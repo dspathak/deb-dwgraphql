@@ -1,0 +1,38 @@
+logging:
+    level: INFO
+    loggers:
+        com.smoketurner.dropwizard.graphql: DEBUG
+        com.example.helloworld: DEBUG
+        graphql: INFO
+        com.deb.dw.gql: DEBUG
+    appenders:
+        -
+            type: console
+            timeZone: UTC
+            target: stdout
+server:
+    type: default
+    rootPath: /api/
+    applicationContextPath: /
+    adminContextPath: /admin
+    applicationConnectors:
+        -
+            type: http
+            port: 8085
+    adminConnectors:
+        -
+            type: http
+            port: 8086
+    requestLog:
+        appenders:
+            -
+                type: console
+                timeZone: UTC
+                target: stdout
+template: 'Hello, %s!'
+defaultName: Stranger
+graphql:
+    enableTracing: false
+    queryCache: maximumSize=10000
+    schemaFiles:
+        - HelloWorld.graphql
